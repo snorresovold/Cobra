@@ -5,9 +5,14 @@ export enum TokenType {
     Number,
     Identifier,
     Equals,
-    OpenParen, CloseParen,
+    OpenParen,
+    CloseParen,
     BinaryOperator,
     Let,
+}
+
+const KEYWORDS: Record<string, TokenType> = {
+    "let": TokenType.Let
 }
 
 export interface Token {
@@ -57,8 +62,23 @@ export function tokenize (sourceCode: string): Token[] {
                 while (src.length > 0 && isInt(src[0])) {
                     num += src.shift();
                 }
-            }
+                tokens.push(token(num, TokenType.Number));
 
+            // build alphabetic tokens
+            } else if (isAlpha(src[0])) {
+                let ident = ""; // could be something like foo or let
+                while(src.length > 0 && isAlpha(src[0])) {
+                    ident += src.shift();
+                }
+
+                // check for reserved keywords
+                const reserved = KEYWORDS[ident];
+                if (reserved == undefined) {
+                    tokens.push(token(ident, TokenType.Identifier))
+                } else {
+                    tokens.push(token(ident, reserved))
+                }
+            }
         }
     }
     return tokens;
