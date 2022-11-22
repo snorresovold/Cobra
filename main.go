@@ -24,7 +24,7 @@ const (
 )
 
 func main() {
-	file, err := os.Open("input.test")
+	file, err := os.Open("input.cobra")
 	if err != nil {
 		panic(err)
 	}
@@ -36,7 +36,6 @@ func main() {
 		if tok == EOF {
 			break
 		}
-
-		fmt.Printf(lit, pos)
+		fmt.Println(pos, tok, lit)
 	}
 }

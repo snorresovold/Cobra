@@ -2,7 +2,7 @@ package lexer
 
 type Token int
 
-// different types
+// different types works as an enum
 const (
 	EOF = iota
 	ILLEGAL
