@@ -12,6 +12,7 @@ export enum TokenType {
 
   // Keywords
   Let,
+  Null,
 
   // Grouping * Operators
   BinaryOperator,
@@ -26,6 +27,7 @@ export enum TokenType {
  */
 const KEYWORDS: Record<string, TokenType> = {
   let: TokenType.Let,
+  null: TokenType.Null,
 };
 
 // Reoresents a single token from the source-code.
@@ -34,7 +36,9 @@ export interface Token {
   type: TokenType; // tagged structure.
 }
 
-// Returns a token of a given type and value
+/**
+ * Returns a token of a given type and value
+ */
 function token(value = "", type: TokenType): Token {
   return { value, type };
 }
@@ -110,7 +114,7 @@ export function tokenize(sourceCode: string): Token[] {
         const reserved = KEYWORDS[ident];
         // If value is not undefined then the identifier is
         // reconized keyword
-        if (reserved) {
+        if (typeof reserved === "number") {
           tokens.push(token(ident, reserved));
         } else {
           // Unreconized name must mean user defined symbol.
