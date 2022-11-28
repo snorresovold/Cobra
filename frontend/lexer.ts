@@ -12,7 +12,6 @@ export enum TokenType {
 
   // Keywords
   Let,
-  Null,
 
   // Grouping * Operators
   BinaryOperator,
@@ -27,7 +26,6 @@ export enum TokenType {
  */
 const KEYWORDS: Record<string, TokenType> = {
   let: TokenType.Let,
-  null: TokenType.Null,
 };
 
 // Reoresents a single token from the source-code.

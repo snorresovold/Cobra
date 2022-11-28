@@ -1,4 +1,4 @@
-import { RuntimeVal } from "../frontend/values.ts";
+import { RuntimeVal } from "./values.ts";
 
 export default class Environment {
   private parent?: Environment;
