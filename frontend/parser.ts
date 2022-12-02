@@ -49,7 +49,21 @@ export default class Parser {
 
     private parse_stmt(): Stmt {
         // skip to parse expression
-        return this.parse_expr();
+        switch (this.at().type) {
+            case TokenType.Let:
+                return this.parse_var_declaration();
+            case TokenType.Const:
+                return this.parse_var_declaration();
+            default:
+                return this.parse_expr();
+        }
+    }
+
+    // LET IDENT
+    // (LET or const ) Ident = expr
+    parse_var_declaration(): Stmt {
+        const isConstand = this.eat().type == TokenType.Const;
+        const identifier = this.expect(TokenType.Identifier, "Expected identifier name following let | const keywords");
     }
 
     private parse_expr(): Expr {

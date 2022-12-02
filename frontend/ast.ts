@@ -6,8 +6,10 @@
 // -----------------------------------------------------------
 
 export type NodeType =
+  // Statements
   | "Program"
-  | "NumericLiteral"
+  | "VarDeclaration"
+  // expressions
   | "NumericLiteral"
   | "Identifier"
   | "BinaryExpr";
@@ -26,6 +28,14 @@ export interface Stmt {
 export interface Program extends Stmt {
   kind: "Program";
   body: Stmt[];
+}
+
+// let x; makes an x variable but assumes that its undefined
+ export interface VarDeclaration extends Stmt {
+  kind: "VarDeclaration";
+  constant: boolean;
+  identifier: string;
+  valyue?: Expr;
 }
 
 /**  Expressions will result in a value at runtime unlike Statements */
