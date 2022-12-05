@@ -6,7 +6,7 @@ import { evaluate } from "./runtime/interpreter.ts";
 
 const html = `
 <form method="POST" action="/">
-  <input type="text" name="name" placeholder="Your name">
+  <input type="text" name="name" placeholder="Do some math">
   <button type="submit">Submit</button>
 </form>
 `;
