@@ -27,7 +27,7 @@ async function handler(req: Request): Promise<Response> {
         const name = body.get("name") || "anonymous";
         const program = parser.produceAST(name?.toString());
         const result = evaluate(program, env);
-        return new Response(`${result}`);
+        return new Response(`${result.type}`);
         }
 
         default:
