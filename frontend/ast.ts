@@ -35,7 +35,7 @@ export interface Program extends Stmt {
   kind: "VarDeclaration";
   constant: boolean;
   identifier: string;
-  valyue?: Expr;
+  value?: Expr;
 }
 
 /**  Expressions will result in a value at runtime unlike Statements */

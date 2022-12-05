@@ -1,7 +1,7 @@
 import Parser from "./frontend/parser.ts";
 import Environment from "./runtime/environment.ts";
 import { evaluate } from "./runtime/interpreter.ts";
-import { MK_NULL, MK_NUMBER, MK_BOOL, NumberVal } from "./runtime/values.ts";
+import { MK_NULL, MK_NUMBER, MK_BOOL } from "./runtime/values.ts";
 
 function repl() {
     const parser = new Parser();
