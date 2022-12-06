@@ -14,6 +14,11 @@ function App() {
         </head>
         <body>
           <h1>Hello world</h1>
+          <form method="POST" action="/">
+            <input type="text" name="name" placeholder="Your name">
+            <input type="text" name="name" placeholder="Do some math">
+            <button type="submit">Submit</button>
+        </form>
         </body>
       </html>
     );
