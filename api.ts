@@ -1,19 +1,30 @@
+
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+import { h, renderSSR } from "https://deno.land/x/nano_jsx@v0.0.20/mod.ts";
 
 import Parser from "./frontend/parser.ts";
 import Environment from "./runtime/environment.ts";
 import { evaluate } from "./runtime/interpreter.ts";
 
-const html = `
-<form method="POST" action="/">
-  <input type="text" name="name" placeholder="Do some math">
-  <button type="submit">Submit</button>
-</form>
-`;
+function App() {
+    return (
+      <html>
+        <head>
+          <title>Hello from JSX</title>
+        </head>
+        <body>
+          <h1>Hello world</h1>
+        </body>
+      </html>
+    );
+  }
+  
 
 async function handler(req: Request): Promise<Response> {
     const parser = new Parser();
     const env = new Environment();
+
+    const html = renderSSR(<App />)
     
     switch (req.method) {
         case "GET": {
