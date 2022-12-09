@@ -53,4 +53,4 @@ async function handler(req) {
   }
 }
 
-serve(handler)
+serve(handler);
