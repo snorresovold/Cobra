@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
 import { h, renderSSR } from "https://deno.land/x/nano_jsx@v0.0.20/mod.ts";
 import Environment from "./runtime/environment.ts";
-
+/*
 function App() {
   return (
     <html>
@@ -14,20 +14,18 @@ function App() {
     </html>
   );
 }
+*/
 
-function handler(req) {
-  const html = renderSSR(<App />);
-  return new Response(html, {
-    headers: {
-      "content-type": "text/html",
-    },
-  });
-}
+const html = `
+<form method="POST" action="/">
+  <input type="text" name="name" placeholder="Do some math">
+  <button type="submit">Submit</button>
+</form>
+`;
 
 async function testing(req) {
   const parser = new Parser();
   const env = new Environment();
-  const html = renderSSR(<App />)
   switch (req.method) {
     case "GET": {
       return new Response(html, {
