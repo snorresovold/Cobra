@@ -26,7 +26,7 @@ function App() {
   );
 }
 
-async function handler(req: Request): Promise<Response> {
+async function handler(req) {
   const parser = new Parser();
   const env = new Environment();
   const html = renderSSR(<App />);
