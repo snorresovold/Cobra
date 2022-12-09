@@ -36,19 +36,6 @@ async function handler(req) {
   const env = new Environment();
 
   const html = renderSSR(<App />);
-  
-  switch (req.method) {
-      case "GET": {
-      return new Response(html, {
-          headers: { "content-type": "text/html; charset=utf-8" },
-      });
-      }
-
-      case "POST": {
-=======
-     
-
-  const html = renderSSR(<App />);
   switch (req.method) {
     case "GET": {
       return new Response(html, {
@@ -62,6 +49,7 @@ async function handler(req) {
       const program = parser.produceAST(name?.toString());
       const result = evaluate(program, env);
       return new Response(JSON.stringify(result))
+  }
   }
 }
 
