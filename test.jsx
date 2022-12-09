@@ -43,6 +43,8 @@ async function testing(req) {
       const result = evaluate(program, env);
       return new Response(JSON.stringify(result))
     }
+    default:
+      return new Response("Invalid method", { status: 405 });
   }
 }
 serve(testing);
