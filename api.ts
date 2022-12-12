@@ -28,7 +28,9 @@ async function handler(req: Request): Promise<Response> {
         const name = body.get("name") || "anonymous";
         const program = parser.produceAST(name?.toString());
         const result = evaluate(program, env);
-        return new Response(JSON.stringify(result))
+        return new Response(JSON.stringify(result), {
+            headers: { "content-type": "text/html; charset=utf-8", "Access-Control-Allow-Origin": "*" },
+        })
         }
 
         default:
