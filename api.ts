@@ -5,7 +5,7 @@ import Environment from "./runtime/environment.ts";
 import { evaluate } from "./runtime/interpreter.ts";
 
 const html = `
-    <h1>sus</h1>
+    <h1>hello world</h1>
     <form method="POST" action="/">
     <input type="text" name="name" placeholder="Do some math">
     <button type="submit">Submit</button>
