@@ -7,15 +7,15 @@ import { evaluate } from "./runtime/interpreter.ts";
 const html = `
     <h1>hello world</h1>
     <form method="POST" action="/">
-    <input type="text" name="name" placeholder="Do some math">
-    <button type="submit">Submit</button>
+        <input type="text" name="name" placeholder="Do some math">
+        <button type="submit">Submit</button>
     </form>
 `;
 
 async function handler(req: Request): Promise<Response> {
     const parser = new Parser();
     const env = new Environment();
-    
+
     switch (req.method) {
         case "GET": {
         return new Response(html, {
