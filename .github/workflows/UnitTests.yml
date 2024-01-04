@@ -11,9 +11,8 @@ jobs:
       - name: Set up Deno
         uses: denoland/setup-deno@v1.1.3
       - uses: actions/checkout@v1
-      - name: urgh
-        run: ls
       - name: run tests
         run: |
+            cd tests
             deno test EnvTests.ts
             deno test LexerTests.ts
