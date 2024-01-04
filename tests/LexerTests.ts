@@ -1,5 +1,5 @@
 import { assertEquals } from 'https://deno.land/std/testing/asserts.ts'; 
-import { TokenType, tokenize } from '../frontend/lexer.js'; 
+import { TokenType, tokenize } from '../frontend/lexer.ts'; 
 
 Deno.test('Tokenize basic arithmetic expression', () => {
   const sourceCode = "(let x = 10 + 20)";
