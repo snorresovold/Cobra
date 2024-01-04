@@ -12,9 +12,7 @@ export default class Parser {
         return this.tokens[0] as Token;
     }
 
-    /**
-    *   returns the token were at and advances to the next token
-    */
+
     private eat() {
         const prev = this.tokens.shift() as Token;
         return prev
@@ -31,7 +29,6 @@ export default class Parser {
 
     public produceAST (sourceCode: string): Program {
 
-        // tokenizes the sourcecode
         this.tokens = tokenize(sourceCode);
 
         const program: Program = {
@@ -39,7 +36,6 @@ export default class Parser {
             body: [],
         };
 
-        // parse until end of file
         while (this.not_eof()) {
             program.body.push(this.parse_stmt());
         }
@@ -48,7 +44,6 @@ export default class Parser {
     }
 
     private parse_stmt(): Stmt {
-        // skip to parse expression
         switch (this.at().type) {
             case TokenType.Let:
                 return this.parse_var_declaration();
@@ -59,8 +54,6 @@ export default class Parser {
         }
     }
 
-    // LET IDENT
-    // (LET or const ) Ident = expr
     parse_var_declaration(): Stmt {
         const isConstand = this.eat().type == TokenType.Const;
         const identifier = this.expect(TokenType.Identifier, "Expected identifier name following let | const keywords");
@@ -70,7 +63,6 @@ export default class Parser {
         return this.parse_additive_expr();
     }
     
-    // (10 + 5) - 5
     private parse_additive_expr(): Expr {
         let left = this.parse_multiplicative_expr();
 
@@ -103,17 +95,6 @@ export default class Parser {
     }
 
 
-    // Orders of presidence
-    // assignmet expression
-    // member
-    // function call
-    // logical expression
-    // expression
-    // additive expression
-    // multiplicative expression
-    // unary expression
-    // primary expression
-
     private parse_primary_expr(): Expr {
         const tk = this.at().type;
 
@@ -127,7 +108,7 @@ export default class Parser {
                     kind: "NumericLiteral", value: parseFloat(this.eat().value),
                 } as NumericLiteral;
             case TokenType.OpenParen: {
-                this.eat(); // eat the opening paren
+                this.eat(); 
                 const value = this.parse_expr();
                 this.expect(TokenType.CloseParen, "Unexpected token found inside parenthesised expression. Expected closing parenthesis",); // closing paren
                 return value;
@@ -135,7 +116,6 @@ export default class Parser {
             default:
                 console.error("unexpected token found during parsing!", this.at())
                 Deno.exit(1);
-                // trick the compiler for TS
                 return {
                     
             } as Stmt;
